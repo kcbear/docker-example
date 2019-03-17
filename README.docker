@@ -1,3 +1,10 @@
+#########################################################
+#
+# To learn more about this project, visit:
+# https://github.com/kcbear/docker-example/wiki/Docker-bootcamp
+#
+#########################################################
+
 # This Readme file is for docker commands
 
 To build the docker image
@@ -7,4 +14,13 @@ To build the docker image
 To run the docker image
 1. docker run -p 8080:8080 poc/spring-boot-rest
 2. verify the application launch, http://localhost:8080/accounts/
+
+
+#########################################################
+#
+# To learn more about scaling docker service, visit:
+# https://github.com/kcbear/docker-example/wiki/Scaling-from-docker-container-to-a-swarm-of-service-replica-containers
+#
+#########################################################
+
 

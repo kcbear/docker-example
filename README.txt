@@ -1,7 +1,7 @@
 #########################################################
 #
 # To learn more about this project, visit:
-# https://github.com/kcbear/docker-example/wiki/Notes
+# https://github.com/kcbear/docker-example/wiki/Docker-bootcamp
 #
 #########################################################
 
