@@ -1,4 +1,10 @@
 # This Readme file is for docker commands
 
-To build the docker image via gradle
+To build the docker image
 1. ./gradlew docker
+2. docker build -t poc/spring-boot-rest .
+
+To run the docker image
+1. docker run -p 8080:8080 poc/spring-boot-rest
+2. verify the application launch, http://localhost:8080/accounts/
+
