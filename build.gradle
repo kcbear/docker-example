@@ -1,0 +1,67 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.5.RELEASE")
+        classpath("gradle.plugin.com.palantir.gradle.docker:gradle-docker:0.21.0")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'com.palantir.docker'
+apply plugin: 'distribution'
+
+group = 'poc'
+
+bootJar {
+    baseName = 'spring-boot-rest-docker'
+    version = '1.0.0'
+}
+
+// For docker
+task unpack(type: Copy) {
+    dependsOn bootJar
+    from(zipTree(tasks.bootJar.outputs.files.singleFile))
+    into("build/dependency")
+}
+
+docker {
+    name "${project.group}/${bootJar.baseName}"
+    copySpec.from(tasks.unpack.outputs).into("dependency")
+    buildArgs(['DEPENDENCY': "dependency"])
+}
+// end docker
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    // Spring
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("com.h2database:h2")
+
+    // as JAXB lib are completely removed from the JDK 11
+    compile 'javax.xml.bind:jaxb-api:2.2.11'
+    compile 'com.sun.xml.bind:jaxb-core:2.2.11'
+    compile 'com.sun.xml.bind:jaxb-impl:2.2.11'
+    compile 'javax.activation:activation:1.1.1'
+
+    // unit testing
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+    testCompile "org.mockito:mockito-core:2.+"
+    testCompile("junit:junit")
+}
+
