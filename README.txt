@@ -1,3 +1,11 @@
+#########################################################
+#
+# To learn more about this project, visit:
+# https://github.com/kcbear/docker-example/wiki/Notes
+#
+#########################################################
+
+
 Required JDK 8+
 
 #To build
