@@ -2,5 +2,3 @@
 
 To build the docker image via gradle
 1. ./gradlew docker
-
-To
